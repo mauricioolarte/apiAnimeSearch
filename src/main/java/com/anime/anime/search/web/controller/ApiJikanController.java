@@ -3,6 +3,8 @@ package com.anime.anime.search.web.controller;
 import com.anime.anime.search.domain.dto.AnimeCarousellCardDTO;
 import com.anime.anime.search.domain.service.AnimeCarousellCardService;
 import com.anime.anime.search.persistence.model.qparams.AnimeSearchParams;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,12 @@ import java.util.ArrayList;
 public class ApiJikanController {
     @Autowired
     private AnimeCarousellCardService animeCarousellCardService;
+    private final Log LOGGER = LogFactory.getLog(ApiJikanController.class);
+
     @CrossOrigin(origins="*")
     @PostMapping("/name")
     public ResponseEntity<ArrayList<AnimeCarousellCardDTO>> getAnimesByName(@RequestBody AnimeSearchParams jsonBody){
+        LOGGER.info("llamato a ruta /anime");
          return new ResponseEntity<>(animeCarousellCardService.getListAnime(jsonBody), HttpStatus.OK);
     }
 }

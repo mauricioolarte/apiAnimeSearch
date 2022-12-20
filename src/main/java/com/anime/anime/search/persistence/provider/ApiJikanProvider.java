@@ -6,6 +6,8 @@ import com.anime.anime.search.persistence.model.qparams.AnimeSearchParams;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -18,16 +20,33 @@ public class ApiJikanProvider implements ApiJikanProviderInterface {
     private static final Double DEFAULT_DOUBLE = 0.0;
     private static final String IMAGES_LEVEL = "images";
 
+    private final Log LOGGER = LogFactory.getLog(ApiJikanProvider.class);
+
+
     @Value("${value.apiJikanUrlAnime}")
     private String apiJikanUrlAnime;
 
     @Override
     public ArrayList<Anime> getAnimeByQueryParams(AnimeSearchParams params) {
+
+        LOGGER.info("Inicio metodo getAnimeByQueryParams");
+
+        try {
+
+        } catch (Exception e) {
+            LOGGER.error(e.getStackTrace());
+        }
         JsonObject response;
         Gson gson = new Gson();
         RestTemplate request = new RestTemplate();
         ArrayList<Anime> animeList = new ArrayList<>();
+
+        LOGGER.info("Lamado a Api ApiJickan");
+
         response = gson.fromJson( request.getForObject(apiJikanUrlAnime+params.getWordToSearch(), String.class), JsonObject.class);
+
+        LOGGER.info("Fin Lamado a Api ApiJickan");
+
         JsonArray array;
         array = response.get("data").getAsJsonArray();
         array.forEach(jsonElement -> {
@@ -66,6 +85,7 @@ public class ApiJikanProvider implements ApiJikanProviderInterface {
             anime.setAnimeGenres(animeGenresList);
             animeList.add(anime);
         });
+        LOGGER.info("Fin metodo getAnimeByQueryParams");
 
         return  animeList;
     }

@@ -5,6 +5,8 @@ import com.anime.anime.search.domain.repository.ApiJikanProviderInterface;
 import com.anime.anime.search.persistence.mapper.AnimeCarrousellCardMapper;
 import com.anime.anime.search.persistence.model.anime.Anime;
 import com.anime.anime.search.persistence.model.qparams.AnimeSearchParams;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,10 @@ public class AnimeCarousellCardService {
     @Autowired
     private ApiJikanProviderInterface apiJikanProviderInterface;
 
+    private final Log LOGGER = LogFactory.getLog(AnimeCarousellCardService.class);
 
     public ArrayList<AnimeCarousellCardDTO> getListAnime(AnimeSearchParams params){
+        LOGGER.info("inicio metodo getListAnime");
         List<Anime> animeSearchResponse = apiJikanProviderInterface.getAnimeByQueryParams(params);
         ArrayList<AnimeCarousellCardDTO> animeDtoResponse = new ArrayList<>();
 
@@ -39,6 +43,7 @@ public class AnimeCarousellCardService {
             }
             animeDtoResponse.add(anime);
         });
+        LOGGER.info("Final metodo getListAnime");
         return animeDtoResponse;
     }
 
