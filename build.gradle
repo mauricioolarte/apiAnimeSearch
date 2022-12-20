@@ -21,11 +21,15 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework:spring-webmvc:5.3.18'
 	implementation 'com.google.code.gson:gson:2.8.9'
 	testImplementation('junit:junit:4.13')
 	testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.9.1")
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
+
+
 
 }
 
