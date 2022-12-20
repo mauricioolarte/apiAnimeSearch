@@ -15,7 +15,7 @@ public interface AnimeCarrousellCardMapper {
             @Mapping(source= "animeId", target = "animeId"),
             @Mapping(source = "animeTitle", target = "animeTitle"),
             @Mapping(source = "imagesImageUrl", target = "urlImagen"),
-            @Mapping(source = "animeScore", target = "score")
+            //@Mapping(source = "animeScore", target = "score")
     })
     AnimeCarousellCardDTO toAnimeCarousellCardDTO(Anime anime);
     ArrayList<AnimeCarousellCardDTO> toAnimeCarousellListDTO(ArrayList<Anime> animeList);

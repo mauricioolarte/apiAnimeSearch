@@ -5,6 +5,7 @@ public class AnimeCarousellCardDTO {
     private String animeTitle;
     private String urlImagen;
     private Double score;
+    private String recommendationMessage;
 
     public Integer getAnimeId() {
         return animeId;
@@ -36,6 +37,13 @@ public class AnimeCarousellCardDTO {
 
     public void setScore(Double score) {
         this.score = score;
+    }
+    public String getRecommendationMessage() {
+        return recommendationMessage;
+    }
+
+    public void setRecommendationMessage(String recommendationMessage) {
+        this.recommendationMessage = recommendationMessage;
     }
 
 
