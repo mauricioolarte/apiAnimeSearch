@@ -17,12 +17,12 @@ import java.util.ArrayList;
 public class ApiJikanController {
     @Autowired
     private AnimeCarousellCardService animeCarousellCardService;
-    private final Log LOGGER = LogFactory.getLog(ApiJikanController.class);
+    private final Log logger = LogFactory.getLog(ApiJikanController.class);
 
-    @CrossOrigin(origins="*")
+    @CrossOrigin(origins="http://localhost:3000")
     @PostMapping("/name")
     public ResponseEntity<ArrayList<AnimeCarousellCardDTO>> getAnimesByName(@RequestBody AnimeSearchParams jsonBody){
-        LOGGER.info("llamato a ruta /anime");
+        logger.info("llamado a ruta /anime");
          return new ResponseEntity<>(animeCarousellCardService.getListAnime(jsonBody), HttpStatus.OK);
     }
 }
